@@ -27,28 +27,49 @@
 			<div class="hero-content">
 
 				<h2>Welcome to our website</h2>
+    <p id="additional-content">
+        We, a team of 4 members [Anant Bhat, Anusha Achari, Navya Hebbar, Suhas Shetti] final year diploma students at Shree Vidyadhiraj Polytechnic, embarked on a mission to develop Student Database Management System along with the guidance of our cohort Shree Dinesh Balgi. This innovative solution aims to revolutionize the way educational institutions manage student information, offering efficiency, accessibility, and enhanced data security.
+    </p><br>
+    <p id="additional-content-2">
+        What We Do:
+Student Database Management System eliminates the tedious burden of manual data handling, offering:
+Effortless Data Management: Enter, organize, and retrieve student information with ease. No more searching through mountains of paperwork!
+Accessible for All: Designed with both administrators and students in mind, our intuitive interface empowers everyone to interact with data seamlessly.
+Uncompromising Security: We prioritize data protection. Robust security measures ensure your sensitive student information remains safe and sound.
+    </p>
+    <button id="read-more" class="cta-button">Read More</button>
 
-				<p>We, a team of 4 members [Anant Bhat,Anusha Achari,Navya Hebbar,Suhas Shetti] final year diploma students at Shree Vidyadhiraj Polytechnic, embarked on a mission to develop Student Database Management System along with the guidance of our cohort Shree Dinesh Balgi. This innovative solution aims to revolutionize the way educational institutions manage student information, offering efficiency, accessibility, and enhanced data security.
-				</p>
-				
-				
-				<button id="read-more" class="cta-button">Read More</button>
 
 			</div>
 
 			<div class="hero-image">
 
-				<img class="abt" src="/img/abt.webp" alt="abt-logo" />
-
+				<img class="abt" src="/img/student_database.png" alt="abt-logo" />
 			</div>
 
 		</div>
 		
 
-	</section>
-	
-	
 
+	
+	 <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Initially hide the additional-content-2 paragraph
+            document.getElementById('additional-content-2').style.display = 'none';
+        });
+
+        document.getElementById('read-more').addEventListener('click', function() {
+            var additionalContent2 = document.getElementById('additional-content-2');
+            if (additionalContent2.style.display === 'none') {
+                additionalContent2.style.display = 'block';
+                document.getElementById('read-more').textContent = 'Read Less';
+            } else {
+                additionalContent2.style.display = 'none';
+                document.getElementById('read-more').textContent = 'Read More';
+            }
+        });
+    </script>
+	</section>
 </body>
 
 </html>

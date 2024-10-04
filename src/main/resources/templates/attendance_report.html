@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::title}, ~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Attendance Report</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+          integrity="sha384-0evSX huddled7su3YrYtEC9zvDyrBGOnMe0++Yv9vEvjjk49R0Yv+t7CzOE09VU4yoUshI" crossorigin="anonymous">
+    
+</head>
+<body>
+<section style="min-width: 58px;">
+	<style>
+        .table-wrapper {
+            overflow-x: auto;
+        }
+        
+        /* Hide elements for printing */
+        @media print {
+            .no-print,
+           /* .main-footer,*/
+            #main-header, 
+            input[type="text"],
+            button.btn-primary {
+                display: none;
+            }
+        }
+    </style>
+        <br>
+        <div class="container">
+			<div class="no-print">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <p style="color: red;font-weight: bold;">Enter Register Number & Semester to Generate Report!!</p>
+                        <form id="reportForm" action="report" method="get" class="d-flex align-items-end">
+    <div class="form-group mr-2">
+        <label for="registerNoFilter">Register No:</label>
+        <input type="text" class="form-control form-control-sm" id="registerNoFilter" name="registrationNumber">
+    </div>
+    <span class="mx-3"></span>
+    <div class="form-group mr-2">
+        <label for="semesterFilter">Semester:</label>
+        <input type="text" class="form-control form-control-sm" id="semesterFilter" name="semester">
+    </div>
+    <span class="mx-2"></span>
+    <div class="button-container">
+        <button type="submit" class="btn btn-success btn-sm mb-0" id="generateReportBtn">GENERATE REPORT</button>
+    </div>
+</form>
+<div id="error" style="display: none; color: red; margin-top: 5px;">Please fill out all required fields.</div>
+
+<script>
+    document.getElementById('generateReportBtn').addEventListener('click', function(event) {
+        var registerNoInput = document.getElementById('registerNoFilter');
+        var semesterInput = document.getElementById('semesterFilter');
+        var errorDiv = document.getElementById('error');
+
+        if (registerNoInput.value.trim() === '' || semesterInput.value.trim() === '') {
+            event.preventDefault(); // Prevent form submission
+            errorDiv.style.display = 'block'; // Display error message
+        } else {
+            errorDiv.style.display = 'none'; // Hide error message if fields are filled
+        }
+    });
+</script>
+
+                </div>
+                </div>
+            </div>
+            <br>
+            <h1>Student Attendance Report</h1>
+            <div th:if="${not #lists.isEmpty(attendanceList)}">
+                <!-- Display register number, department, and name only once -->
+                <div>
+                    <p>SEMESTER:<span th:text="${attendanceList[0].semester}"></span></p>
+                    <p>DEPARTMENT: <span th:text="${attendanceList[0].department}"></span></p>
+                    <p>REGISTER NUMBER: <span th:text="${attendanceList[0].registrationNumber}"></span></p>
+                    <div th:if="${student != null}">
+                        <p>NAME: <span th:text="${student.name}"></span> </p>
+                    </div>
+                    <div th:unless="${student != null}">
+                        <p>NAME: Student details not found</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="table table-striped table-bordered table-dark">
+                    <thead>
+                    <tr>
+                        <th scope="col">SI. No.</th>
+                        <th scope="col">Subjects</th>
+                        <th scope="col">Held</th>
+                        <th scope="col">No of classes Attended</th>
+                        <th scope="col">Test Marks</th>
+                        <th scope="col">% of Attendance</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+    <tr th:each="attendance, index : ${attendanceList}">
+        <td th:text="${index.index + 1}"></td>
+        <td th:text="${attendance.subject}"></td>
+        <td th:text="${attendance.totalClasses}"></td>
+        <td th:text="${attendance.totalAttended}"></td>
+        <td th:if="${marksList != null and not #lists.isEmpty(marksList)}" th:text="${marksList.get(index.index).TotalMarks}"></td>
+        <td th:text="${attendance.percentage}"></td>
+    </tr>
+</tbody>
+
+                </table>
+            </div>
+            <p>Overall % of Attendance: <span th:text="${overallPercentage}"></span>%</p>
+            <p>Remarks: <span th:text="${remarks}"></span></p>
+        </div>
+    </div>
+
+    <!-- Print Button -->
+    <div class="container no-print">
+        <button class="btn btn-primary" onclick="printPage()">Print Report</button>
+    </div>
+
+
+<script>
+    function printPage() {
+        window.print();
+    }
+</script>
+</section>
+
+</body>
+</html>

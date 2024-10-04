@@ -27,13 +27,12 @@
 						</div>
 						<div class="card-body">
 
-							<form action="/saveStud" method="post"> 
-								<div class="mb-3">
-									<label for="exampleInputEmail1" class="form-label">Register Number</label>
-									<input type="text" class="form-control" id="exampleInputEmail1" name="regnum"
-										aria-describedby="emailHelp">
-
-								</div>
+							<form action="/saveStud" method="post">
+    <div>
+        <label for="exampleInputEmail1">Register Number:</label>
+        <input type="text"  class="form-control" id="exampleInputEmail1" name="regnum" aria-describedby="emailHelp" required>
+    	
+    </div>
 
 								<div class="mb-3">
 									<label for="exampleInputPassword1" class="form-label">Student's Name</label>
@@ -51,7 +50,7 @@
 									<label for="exampleInputPassword1" class="form-label">Gender</label>
 									<div class="form-check form-check-inline">
 										<input class="form-check-input" type="radio" name="gender"
-											id="inlineRadio1" value="option1">
+											id="inlineRadio1" value="male">
 										<label class="form-check-label" for="inlineRadio1">Male</label>
 									</div>
 									<div class="form-check form-check-inline">

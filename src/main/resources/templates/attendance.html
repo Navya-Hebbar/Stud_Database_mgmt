@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::title}, ~{::section})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title text-center">Enter Attendance</h2>
+                            
+                            <form th:action="@{/attendance_view}" th:object="${attendance}" method="post">
+                     
+                                <div class="form-group">
+                                    <label for="semester">Semester:</label>
+                                    <select id="semester" name="semester" class="form-control" 
+                                    th:field="*{semester}" required>
+                                        <option value="" selected>Select Semester</option>
+                                        <option value="semester1">Semester 1</option>
+                                        <option value="semester2">Semester 2</option>
+                                        <option value="semester3">Semester 3</option>
+                                        <option value="semester4">Semester 4</option>
+                                        <option value="semester5">Semester 5</option>
+                                        <option value="semester6">Semester 6</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                    <br><br>
+                                    </select>
+									<label for="department">Department:</label>
+									<select id="department" name="department"
+										class="form-control" th:field="*{department}" required>
+										<option value="" selected>Select Department</option>
+										<option value="cs">Computer Science Engineering</option>
+										<option value="ec">Electronics & Communication Engineering</option>
+										<option value="me">Mechanical Engineering</option>
+										<option value="au">Automobile Engineering</option>
+										<option value="ce">Civil Engineering</option>
+
+
+										<!-- Add more departments as needed -->
+									</select>
+									<br><br>
+                                    <!-- Add Registration Field Here -->
+                                    <label for="registration">Enter Registration Number:</label>
+                                    <input type="text" id="registration" name="registration" class="form-control" 
+                                    th:field="*{registrationNumber}" required>
+                                    <!-- End Registration Field -->
+                                   
+                                </div>
+                                <br><br>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Sl.No</th>
+                                                
+                                                <th th:field="*{subject}">Subjects</th>
+                                                <th>Theory classes</th>
+                                                <th>Lab classes</th>
+                                                <th>Tutorial classes</th>
+                                                <th class="text-success">Total classes</th>
+                                                <th>Total Theory Classes Attended</th>
+                                                <th>Total Lab Classes Attended</th>
+                                                <th>Total Tutorial Classes Attended</th>
+                                                <th class="text-success">Total classes attended by student</th>
+                                                <th class="text-success">Percentage of student's attendance</th>
+                                            </tr>
+                                            <tr>
+												
+												<td>ID</td>
+												<td>
+													      <select id="subject" name="subject"
+										class="form-control" th:field="*{subject}" required>
+										<option value="" selected>Subject</option>
+										
+										<option value="Engg Maths">Engineering Mathematics</option>
+										<option value="FOC">Fundamentals Of Computer</option>
+										<option value="FEEE">Fundamentals of Electrical & Electronics Engineering</option>
+										<option value="IT skills">IT SKILLS</option>
+										<option value="EVS">Environmental Sustainability</option>
+										
+										<option value="Digital electronics">Digital Electronics</option>
+										<option value="Stat">Statistics</option>
+										<option value="CAEG">Computer Aided Engineering Graphics</option>
+										<option value="Materials for Engg">Materials For Engineering</option>
+										<option value="Communication Skills">Communication Skills</option>
+										
+										<option value="CAED">Computer Aided Engineering Design</option>
+										<option value="Mech Sci & Engg">Mechanical Science & Engineering</option>
+										<option value="Construction Materials">Construction Materials</option>
+										
+										
+										
+										
+										
+										<option value="PMS">Project Management Skills</option>
+										<option value="Multimedia">Multimedia</option>
+										<option value="Kannada-I">Kannada-I</option>
+										<option value="Electronic Components & Devices">Electronic Components & Devices</option>
+										<option value="Mech workshop practice-I">Mechanical Workshop practice-I</option>
+										
+										<option value="Automotive Engines">Automotive Engines</option>
+										<option value="CEG">Civil Engineering Graphics</option>
+										<option value="Basic Surveying">Basic Surveying</option>
+										
+										<option value="Python Prog">Python Programming</option>
+										<option value="CN">Computer Network</option>
+										
+										<option value="CH & maintenance">Computer Hardware & Maintenance</option>
+										<option value="DBMS">Database Management System</option>
+										<option value="Kannada-II">Kannada-II</option>
+										
+										
+										
+										<option value="Analog Electronics">Analog Electronics</option>
+										<option value="Logic Des using Verilog">Logic Design Using Verilog</option>
+										<option value="Communication Systems">Communication Systems</option>
+										
+										<option value="Electronic measurement & testing techniques">Electronic Measurement & Testing Techniques</option>
+										<option value="Mech of materials">Mechanics of Materials</option>
+										
+										<option value="Machine tool tech">Machine Tool Technology</option>
+										<option value="FPEngg">Fluid Power Engineering</option>
+										<option value="Automoblic C&T System">Automobile Chassis & Transmission System</option>
+										
+										
+										<option value="Automotive Electrical System">Automotive Electrical System</option>
+										<option value="Thermal Engg & Testing">Thermal Engineering & Engine Testing</option>
+										
+										<option value="Automotive Manufacturing Processes">Automotive Manufacturing Processes</option>
+										<option value="Engg Mechs & Strength of material">Engineering Mechanics & Strength of material</option>
+										<option value="Modern SUrveying">Modern Surveying</option>
+										
+										<option value="Construction Techniques">Construction Techniques</option>
+										<option value="Building Drawing Using CADD">Building Drawing Using CADD</option>
+										
+										
+										
+										<option value="DSA">Data Structures & Algorithm</option>
+										<option value="OS">Operating System</option>
+										
+										<option value="OOPS With Java">Object Oriented Programming With Java</option>
+										<option value="SEPP">Software Engineering Principles & Practices</option>
+										<option value="IC">Indian Constitution</option>
+										
+										<option value="PCB Design & Fabrication">PCB Design & Fabrication</option>
+										<option value="WC">Wireless Communication</option>
+										
+										
+										<option value="Embedded	C Prog">Embedded C Programming</option>
+										<option value="Industrial Automation">Industrial Automation</option>
+										
+										<option value="Operations Mgmt">Operations Management</option>
+										<option value="CNC Prog & Machining">CNC Programming & Machining</option>
+										
+										
+										<option value="Product Design & Development">Product Design & Development</option>
+										<option value="Elements	of IA">Elements of	Industrial Automation</option>
+										
+										
+										<option value="Advanced	AS">Advanced Automotive Systems</option>
+										<option value="Design & Drafting">Design & Drafting</option>
+										
+										<option value="Vehicle Body Engg & Dynamics">Vehicle Body Engineering & Dynamics</option>
+										<option value="Fuels & Pollution Control">Fuels & Pollution Control</option>
+										
+										
+										
+										<option value="Concrete Technology">Concrete Technology</option>
+										<option value="Building Estimating & Valuation">Building Estimating & Valuation</option>
+										
+										
+										<option value="Site Management">Site Management</option>
+										<option value="Design & Detailing of RCC structure">Design & Detailing of RCC structure</option>
+										
+										<option value="FS">Full Stack Web Development</option>
+										<option value="Drone Tech">Drone Technologies</option>
+										
+										<option value="IT Automation & Robotics">IT Automation & Robotics</option>
+										<option value="Farm Machinery & Equipment">Farm Machinery & Equipment</option>
+										<option value="Structural Engineering">Structural Engineering</option>
+										
+										</select>
+												</td>
+											
+												<td>
+													<input type="number" th:field="*{theoryClasses}"  class="form-control form-control-sm"/>
+												</td>
+												
+												<td>
+													<input type="number" th:field="*{labClasses}" class="form-control form-control-sm"/>
+												</td>
+												
+												<td>
+													<input type="number" th:field="*{tutorialClasses}" class="form-control form-control-sm"/>
+												</td>
+												
+												<td>
+													<input type="number" th:field="*{totalClasses}" class="form-control form-control-sm" readonly/>
+												</td>
+												
+												<td>
+													<input type="number" th:field="*{attendedTheory}" class="form-control form-control-sm"/>
+												</td>
+												
+												
+												<td>
+													<input type="number" th:field="*{attendedLab}" class="form-control form-control-sm"/>
+												</td>
+												
+												<td>
+													<input type="number" th:field="*{attendedTutorial}" class="form-control form-control-sm"/>
+												</td>
+												
+												<td>
+													<input type="number" th:field="*{totalAttended}" readonly class="form-control form-control-sm"/>
+												</td>
+												
+												<td>
+													<input type="number" th:field="*{percentage}" readonly class="form-control form-control-sm"/>
+												</td>
+												
+												
+											</tr>
+											
+                                        </thead>
+                                    </table>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            </form>
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ </section>
+</body>
+</html>
