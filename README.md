@@ -23,6 +23,24 @@ Before running the project, make sure you have the following installed:
 - **Java 17** (or later)
 - **Maven** for dependency management
 - **MySQL Database** up and running
+- **Springboot**
+
+## Screenshots
+- **Registration & Login Page**
+![image](https://github.com/user-attachments/assets/9a170fde-23a9-46fd-a4b9-8af228fd237f)
+- **Home Page**
+![image](https://github.com/user-attachments/assets/253b51d3-478a-49db-99b1-b224a984def0)
+- **Add , View , Search Student Information**
+![image](https://github.com/user-attachments/assets/7234c5cc-a930-4738-93d7-d8d99fe717f5)
+- **Add , View , Edit ,Search Student Attendance**
+![image](https://github.com/user-attachments/assets/d4c8d8dd-0f52-4a84-b062-e22342761b22)
+- **Add , View , Edit, Search Student Marks**
+![image](https://github.com/user-attachments/assets/0121e4c6-e06f-43a7-b63d-9ae974448d70)
+- **Generate Student Report & Print**
+![image](https://github.com/user-attachments/assets/0ed19cf9-3977-46b4-868d-17b88a49b818)
+
+
+
 
 ## Setup and Installation
 
